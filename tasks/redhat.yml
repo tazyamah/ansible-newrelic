@@ -4,6 +4,7 @@
     newrelic_loaded_os_family: "{{ ansible_os_family }}"
 
 - name: RedHat | Add the New Relic repository key
+  sudo: yes
   copy:
     src: RPM-GPG-KEY-NewRelic
     dest: /etc/pki/rpm-gpg
@@ -12,6 +13,7 @@
     mode: 0644
 
 - name: RedHat | Add the Rew Relic repository file
+  sudo: yes
   copy:
     src: newrelic.repo
     dest: /etc/yum.repos.d/newrelic.repo
@@ -20,6 +22,7 @@
     mode: 0644
 
 - name: RedHat | Install New Relic Sysmond
+  sudo: yes
   yum:
     name: newrelic-sysmond
     state: latest
